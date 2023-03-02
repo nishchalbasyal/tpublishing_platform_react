@@ -1,0 +1,38 @@
+/api
+/api/articles/:name
+/api/articles/:name/upvote
+/api/articles/:name/comments
+
+
+export const vote = async (req, res) => {
+  const id = req.params.id;
+  const direction = req.params.direction;
+
+  const validDirections = ["up", "down"];
+  if (!validDirections.includes(direction)) {
+    res.status(400).json({ message: "Invalid vote direction" });
+    return;
+  }
+
+  const query = { _id: id };
+  const update = {};
+  const voteField = direction === "up" ? "upvotes" : "downvotes";
+  const voteIdsField = direction === "up" ? "upvoteIds" : "downvoteIds";
+
+  update.$inc = { [voteField]: 1 };
+  update.$addToSet = { [voteIdsField]: id };
+
+  if (direction === "up") {
+    update.$pull = { downvoteIds: id };
+  } else {
+    update.$pull = { upvoteIds: id };
+  }
+
+  const options = { new: true };
+  try {
+    const updatedData = await postModel.findOneAndUpdate(query, update, options);
+    res.json(updatedData);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
