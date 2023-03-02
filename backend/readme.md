@@ -1,4 +1,4 @@
-<h3> Backend API For Travel Pishing Community </h3>
+<h3> Backend API For Travel Publishing Community </h3>
 <p> First Step Don't Forget to initalized Repo <code>npm init</code> </p>
 
 <h5>API's</h5>
