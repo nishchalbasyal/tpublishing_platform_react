@@ -1,0 +1,53 @@
+@import "Responsive";
+@import "Variable";
+
+.post{
+    background-color: white;
+    width: 80%;
+    height: fit-content;
+    margin: 10px 5px 10px 5px;
+    padding: 50px 30px 15px 30px;
+    @include flex-col();
+
+    .header{
+        width: 100%;
+        margin: 8px 5px 10px 5px;
+        height: fit-content;
+        @include flex-col($j-cont:flex-start,$a-cont:flex-start);
+        margin: 5px;
+
+        h1{
+            color: rgb(47, 2, 250);
+            margin-bottom: 2px;
+        }
+     }
+
+    .featuredImgContainer{
+        width: 100%;
+        height: 100%;
+        margin: 8px;
+        .featuredImage{
+           width: 80%;
+        }
+    }
+
+    .content{
+
+        margin: 5px 0 5px 0;
+        font-size: 20px;
+
+        p{
+            margin: 25px 0 25px 0;
+
+        }
+
+        h1, h2, h3, h4{
+            margin: 10px 0 5px 0;
+            color: rgb(57, 57, 205);
+
+        }
+    }
+
+
+
+}

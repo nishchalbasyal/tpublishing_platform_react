@@ -1,0 +1,94 @@
+@import "Responsive";
+@import "Variable";
+
+.myaccount{
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    margin: 30px;
+    
+
+    .main-container{
+
+        width: 60%;
+        @include flex-col($a-cont:flex-start,$j-cont:flex-start);
+        
+        .header{
+   
+           background-color: #F2C94C;
+           width: 100%;
+           height: fit-content;
+           @include flex-row($a-cont:flex-center,$j-cont:space-between);
+           margin: 10px;
+           padding: 25px;
+           border-radius: 15px;
+   
+           .header-l{
+            @include flex-col($j-cont:space-around,$a-cont:flex-start);
+ 
+               margin:15px 0 15px 0;
+               text-align: left !important;
+   
+               button{
+                background-color: #232946;
+                padding: 15px;
+                 border: none;
+                color: white;
+                font-weight: 600px;
+                border-radius: 10px;
+                cursor: pointer;
+               }
+           }
+
+           .header-r{
+            width: 30%;
+            @include flex-row($j-cont:flex-end);
+ 
+            img{
+                width: 100%;
+            }
+           }
+
+
+        }
+
+           .my-post{
+            width: 100%;
+            background-color: #F3F7FE;
+            margin: 5px;
+            padding: 20px;
+           }
+   
+           
+       
+     
+    }
+
+    .side-container{
+        width: 30%;
+        @include flex-col($j-cont:flex-start);
+
+
+        .total-post{
+            width: 200px;
+            background: rgba(64, 224, 208, 0.58);
+            height: 100px;
+
+            @include flex-row();
+            border-radius: 10px;
+
+            span{
+                margin: 5px;
+                font-size: 23px;
+                font-weight: bold;
+
+            }
+
+        }
+
+    }
+
+
+
+}
+ 

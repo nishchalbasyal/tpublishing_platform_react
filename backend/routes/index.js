@@ -1,17 +1,26 @@
 import express from "express";
 import { checkVoted } from "../auth/customMiddleware.js";
+import multer from "multer";
 import { getAllPost, createAllPost, vote ,getSinglePost, getPostComments, createComments, searchItem, updatePost, deletePost} from "../controllers/index.js";
 const router = express.Router();
 
-router
-  .get("/api/articles", getAllPost)
-  .get("/api/articles/:id", getSinglePost)
-  .get("/api/articles/:id/comments", getPostComments)
-  .get("/api/search/", searchItem)
+ 
+
+ 
+ 
 
 router
   .post("/api/articles", createAllPost)
   .post("/api/articles/:id/comments", createComments)
+
+
+router
+  .get("/api/articles", getAllPost)
+  .get("/api/articles/:category", getAllPost)
+  .get("/api/articles/:id", getSinglePost)
+  .get("/api/articles/:id/comments", getPostComments)
+  .get("/api/search/", searchItem)
+
 
 
 router
