@@ -1,7 +1,7 @@
 import { application } from "express";
 import postModel from "../models/index.js";
 import express from "express";
-
+ 
 
 const app = express();
 
@@ -15,8 +15,9 @@ export const getAllPost = async (req, res) => {
 };
 
 export const createAllPost = async (req, res) => {
-  const newData = req.body;
-  const newPost = new postModel(newData);
+   const newPost = new postModel(req.body);
+
+
   try {
     await newPost.save().then(() => {
       console.log("Data SuccessFully Saved");
@@ -25,12 +26,23 @@ export const createAllPost = async (req, res) => {
   } catch (e) {
     res.status(501).json({ message: e.message });
   }
+  
+ 
 };
 
 export const getSinglePost = async (req, res) => {
   const id = req.params.id;
   try {
     const post = await postModel.findById({ _id: id });
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+export const getCategory = async (req, res) => {
+  const categoryID = req.params.category;
+  try {
+    const post = await postModel.findById({ category: categoryID });
     res.status(200).json(post);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -76,8 +88,10 @@ export const searchItem = async (req, res) => {
   }
 };
 
+ 
 export const vote = async (req, res) => {
   const id = req.params.id;
+  const articleId = req.body.articleId;
   const direction = req.params.direction;
 
   const validDirections = ["up", "down"];
@@ -86,12 +100,12 @@ export const vote = async (req, res) => {
     return;
   }
 
-  const query = { _id: id };
+  const query = { _id: articleId };
   const update = {};
   const voteField = direction === "up" ? "upvotes" : "downvotes";
   const voteIdsField = direction === "up" ? "upvoteIds" : "downvoteIds";
 
-  const post = await postModel.findById(id);
+  const post = await postModel.findById(articleId);
   if (post[voteIdsField].includes(id)) {
     res.status(400).json({ message: "Already voted" });
     return;
@@ -127,25 +141,40 @@ export const vote = async (req, res) => {
 
 
 
+
+
 // To Update Article
 export const  updatePost = async (req,res)=>{ 
 
   const id = req.params.id;
+
   const update = {};
   if (req.body.title) {
     update.title = req.body.title;
-  }
+   }
+  if (req.body.title) {
+    update.summary = req.body.summary;
+   }
   if (req.body.content) {
     update.content = req.body.content;
+ 
   }
-  if (req.body.author) {
-    update.author = req.body.author;
+  if (req.body.featureImg) {
+    update.featureImg = req.body.featureImg;
+ 
   }
+  if (req.body.category) {
+    update.category = req.body.category;
+ 
+   }
+
+  
   
   const options = { new: true, upsert: true };
   try {
     const updatedData = await postModel.findOneAndUpdate({ _id: id }, { $set: update }, options);
     res.json(updatedData);
+    console.log(`Post Updated SuccessFully`)
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -1,0 +1,116 @@
+@import "Variable";
+
+@mixin breakpoint($point) {
+  @if $point ==desktop {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+
+  @else if $point ==tablet {
+    @media (min-width: 768px) and (max-width: 1199px) {
+      @content;
+    }
+  }
+
+  @else if $point ==mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+}
+
+@mixin responsive() {
+
+  @media (min-width: 0px) and (max-width: 1199px) {
+    @content;
+  }
+
+
+}
+
+
+@mixin flex-row($wrap: false, $j-cont: center, $a-cont: center) {
+  display: flex;
+
+  @if($wrap==true) {
+    flex-direction: row wrap;
+
+  }
+
+  else {
+    flex-direction: row;
+
+  }
+
+
+  justify-content: $j-cont;
+  align-items: $a-cont;
+}
+
+
+@mixin circleImg($map) {
+  width: $map;
+  height: $map;
+  border-radius: 50%;
+
+}
+
+
+@mixin divider($map, $width: 100%, $color: $divider-color) {
+  width: $width;
+  height: $map;
+  background-color: $color;
+  align-items: center;
+  margin: 7px;
+
+}
+
+@mixin flex-col($j-cont: center, $a-cont: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $j-cont;
+  align-items: $a-cont;
+}
+
+
+
+@mixin btn-rounded($bgcolor: $secondary_color) {
+  width: fit-content;
+  padding: 8px 12px 8px 12px;
+  border-radius: 20px;
+  background: $bgcolor;
+  margin: 5px;
+  cursor: pointer;
+
+}
+
+@mixin circular-img($width, $border: True, $border-width: 2px, $color: $secondary_color) {
+  width: $width;
+  height: $width;
+  border-radius: 50%;
+
+  @if($border==True) {
+
+    border: $border-width solid $color;
+  }
+
+
+}
+
+// Example Usage
+// .container {
+//   width: 100%;
+
+//   @include breakpoint(desktop) {
+//     max-width: 1140px;
+//   }
+
+//   @include breakpoint(tablet) {
+//     max-width: 960px;
+//   }
+
+//   @include breakpoint(mobile) {
+//     padding: 0 20px;
+//   }
+// }

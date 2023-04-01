@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+ 
+$fontsize: 18px;
+$font-family: 'Urbanist', sans-serif;
+$default-background : #DAE0E6;
+$primary_color : #FF0000;
+$secondary_color: #8C52FF;
+$secondary2_color: #505050;
+$dark : black;
+$divider-color : rgb(202, 202, 202);
+
+
+
+
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    font-family: $font-family;
+    box-sizing: border-box;
+ }
+
+body{
+    background-color: $default-background;
+ }
+
+     
+ 

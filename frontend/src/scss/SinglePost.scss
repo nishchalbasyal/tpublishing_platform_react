@@ -1,0 +1,189 @@
+@import "./Responsive";
+ 
+.singlepost {
+
+    background-color: white;
+    width: 100%;
+    margin: 0px 50px;
+    padding: 30px;
+
+    @include responsive(){
+        width: 100%;
+        margin: 2px;
+    }
+
+
+    .sp-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        h1{
+            font-size: 27px;
+            cursor: pointer;
+
+            &:hover{
+                color: $secondary_color
+            }
+        }
+
+        .meta-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .time-span{
+                font-weight: 600;
+                color: rgb(116, 116, 116);
+                font-size: 12px;
+                cursor: pointer;
+
+
+                &:hover{
+                    color: $secondary2_color;
+                }
+            }
+            
+            .author-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+
+
+                
+                
+                
+                img {
+                    
+                   @include circular-img($width:30px);
+                    margin-right: 12px;
+                    
+                    
+                }
+                
+                .author-name {
+                    color: black;
+                    font-weight: 600;
+                    text-decoration: underline;
+                    cursor: pointer;
+
+                    
+                &:hover{
+                    color: $primary_color;
+                }
+                
+                }
+                
+            }
+            
+
+            
+
+            
+        }
+        .dec-container {
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
+            width: 100%;
+            margin: 10px 0 0 0;
+
+            .featuredImg{
+ 
+            
+             
+            img {
+                width: 250px;
+                margin-right: 20px;
+                align-items: center;
+                border-radius: 10px;
+                cursor: pointer;
+                background-color: aqua;
+
+                &:hover{
+                    opacity: 0.7;
+                }
+ 
+
+                @include breakpoint(tablet){
+                    width: 100px;
+                    height: 100px;
+                }
+ 
+
+            }
+        }
+
+            .main-dec{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: flex-start;
+
+            
+             }
+        }
+
+        .voting {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-end;
+            margin-bottom: 20px;
+ 
+            .upvote{
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin-bottom: 5px;
+
+                p{
+                    font-weight: 600;
+                    font-size: 13px;
+                }
+
+                .upvote-icon:hover {
+                    color: red;
+                    font-size: 40px;
+                    cursor: pointer;
+                  }
+
+          
+                 
+               
+       
+            }
+
+            .downvote{
+                display: flex;
+                flex-direction: row;
+
+                p{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    font-weight: 600;
+                    font-size: 13px;
+
+                }
+            }
+        }
+
+        .hL{
+            width: 100%;
+            border: 1px solid rgb(202, 202, 202);
+            color: $secondary2_color;
+            margin: 5px 0 20px 0;
+
+        }
+        
+        
+        
+  
+    }
+
+}

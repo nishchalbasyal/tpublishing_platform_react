@@ -1,12 +1,16 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import dotenv from "dotenv";
 import router from "./routes/index.js";
 import mongoose from "mongoose";
+import multer from "multer";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
+
+app.use(cors({ credentials: true }))
 
 
  
@@ -21,9 +25,16 @@ db.on("open",()=>{
  
 
 
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 app.use("/", router);
+
+
 
 app.listen(port, () => {
   console.log(`Server Is Listening At ${port}`);

@@ -1,0 +1,103 @@
+@import "Responsive";
+@import "Variable";
+
+.login-container {
+    @include flex-col();
+    width: 100%;
+    height: 100vh;
+    color: rgb(113, 113, 113);
+
+    .error{
+        color: red;
+    }
+
+
+    .login-main {
+        border-top-left-radius: 13px;
+        border-bottom-right-radius: 13px;
+        width: 350px;
+        background-color: white;
+        height: fit-content;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+
+        @include flex-col($j-cont: flex-start);
+
+        .header {
+            border-top-left-radius: 13px;
+            width: 100%;
+            background-color: $secondary-color;
+            height: 100px;
+            color: white;
+            font-weight: bold;
+            @include flex-row();
+            margin-bottom: 20px;
+
+        }
+
+        .form {
+            width: 80%;
+            @include flex-col($j-cont: space-between);
+
+            .form-control {
+                width: 100%;
+                @include flex-col();
+                margin: 10px;
+
+                input {
+                    width: 100%;
+                    padding: 10px;
+                    border-radius: 50px;
+                    @include flex-col();
+                    background-color: #DAE0E6;
+                    font-size: 14px;
+                    border: none;
+
+
+
+                }
+
+
+
+            }
+
+            .forget-password {
+                width: 100%;
+                @include flex-row($j-cont: flex-end);
+                margin: 10px 0 10px 0;
+            }
+
+            
+        }
+        .btn {
+            @include btn-rounded();
+            width: 80%;
+            padding-inline: 20px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+
+            &:hover {
+                font-size: 15px;
+                background-color: rgb(48, 48, 48);
+            }
+        }
+
+        .register-account{
+            @include flex-col();
+            padding: 10px;
+            margin: 50px 0 10px 0;
+
+            #signup-link{
+                font-weight: 900;
+                text-transform: uppercase;
+            }
+
+            
+
+        }
+
+    }
+}

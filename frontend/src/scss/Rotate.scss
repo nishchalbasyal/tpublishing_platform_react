@@ -1,0 +1,19 @@
+@import "Responsive";
+@import "Variable";
+.animate{
+      @include flex-row();
+    #element{
+        animation: rotate 2s infinite linear;
+        color: rgb(0, 0, 0);
+        @keyframes rotate {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+          }
+          font-size: 25px;
+    }
+    
+}
