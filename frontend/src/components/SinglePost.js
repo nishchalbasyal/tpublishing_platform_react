@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "./Auth/AuthContext";
 import { PostContext } from "./Auth/PostContext";
+import { formatDate } from "./Auth/formatDate";
 import Settingsrolling from "./Settingsrolling";
 const Post = () => {
   const { title } = useParams();
@@ -27,7 +28,7 @@ const Post = () => {
             <h1>
               {post.title}
              </h1>
-            <p>Posted On January 1, 2021 by {post.author}</p>
+            <p>Posted On {formatDate(post.created)} by {post.author}</p>
             <p>
               <span>{post.upvotes}</span>&nbsp;
               <span>

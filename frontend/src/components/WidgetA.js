@@ -32,14 +32,14 @@ const WidgetA = ({ currentUser,navigate }) => {
         <div className="btn-group">
           <button
             className="btn-fill"
-            style={{ "border-radius": "0", width: "100px" ,backgroundColor:"black"}}
+            style={{ bordeRadius: "0", width: "100px" ,backgroundColor:"black"}}
             onClick={()=>navigate("/login")}
           >
             Login
           </button>
           <button
             className="btn-outline"
-            style={{ "border-radius": "0", width: "100px"  }}
+            style={{ borderRadius: "0", width: "100px"  }}
             onClick={()=>navigate("/register")}
 
           >

@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { useContext } from "react";
-import { PostContext } from "./Auth/PostContext";
 import Settingsrolling from "./Settingsrolling";
 import { AuthContext } from "./Auth/AuthContext";
+import { formatDate } from "./Auth/formatDate";
 import axios from "axios";
 
-const PostBox = ({posts, setPosts}) => {
-  const navigate = useNavigate();
+const PostBox = ({post, setPosts}) => {
+    const navigate = useNavigate();
  
   const { currentUser, isLoading } = useContext(AuthContext);
 
@@ -82,22 +82,16 @@ const PostBox = ({posts, setPosts}) => {
 
   return (
     <div className="singlepost">
-      {posts.length > 0 ? (
-        [...posts].reverse().map((post, i) => {
-          return (
-            <div key={i} className="sp-container">
+      
+        
+            <div   className="sp-container">
               <div className="meta-info">
                 <span className="author-info">
-                  <img
-                    className="skeleton"
-                    onClick={() => clickPost(post.title, post._id)}
-                    src="https://media.istockphoto.com/photos/smiling-indian-man-looking-at-camera-picture-id1270067126?b=1&k=20&m=1270067126&s=612x612&w=0&h=tcabRaVlA0bsZhWCDBXxC1IYuGnh7_VuramO-vJ5jRs="
-                    alt="rand"
-                  />
+      
 
-                  <p className="author-name">Nishchal Basyal</p>
+                  <p className="author-name">{post.author}</p>
                 </span>
-                <p className="time-span">3 min ago</p>
+                <p className="time-span">{formatDate(post.created)}</p>
               </div>
               <div className="title">
                 <h1 onClick={() => clickPost(post.title,post._id)}>{post.title}</h1>
@@ -157,11 +151,8 @@ const PostBox = ({posts, setPosts}) => {
               </div>
               <div className="hL"></div>
             </div>
-          );
-        })
-      ) : (
-        <Settingsrolling />
-      )}
+     
+     
     </div>
   );
 };

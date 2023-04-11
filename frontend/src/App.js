@@ -1,7 +1,7 @@
 import "./scss/App.scss";
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Registration from "./pages/Registration";
 import SearchPage from "./pages/SearchPage";
 import CreatePost from "./pages/CreatePost";
@@ -61,7 +61,7 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Registration />} />
-              <Route path="search/:" element={<SearchPage />} />
+              <Route path="search/:searchText" element={<SearchPage />} />
 
               <Route
                 path="post"
@@ -82,9 +82,7 @@ function App() {
 
               <Route path=":title" element={<SinglePost />} />
               <Route path="category" element={<Category />} />
-              <Route element={<Settingsrolling />} />
-              <Route element={<WidgetA />} />
-            </Route>
+              </Route>
           </Routes>
         </PostContext.Provider>
       </AuthContext.Provider>

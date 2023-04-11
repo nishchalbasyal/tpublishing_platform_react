@@ -1,0 +1,16 @@
+@import "Responsive";
+@import "Variable";
+
+.SearchBox{
+    @include flex-col();
+
+    h1{
+        margin: 10px;
+        text-align: start;
+        width: 80%;
+    }
+    .searchItem{
+        width: 80%;
+        margin: 10px;
+    }
+ }

@@ -10,8 +10,8 @@ import MobileNavigation from "./MobileNavigation";
 import MenuIcon from "@mui/icons-material/Menu";
 import { AuthContext } from "../components/Auth/AuthContext";
 import Settingsrolling from "./Settingsrolling";
-import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
 import { Logout } from "./Auth/Logout";
 
 const Navigation = () => {
@@ -19,16 +19,22 @@ const Navigation = () => {
   const { currentUser, isLoading, setCurrentUser } = useContext(AuthContext);
   // console.log(currentUser)
   const [openMobMenu, setMobilemenu] = useState(false);
-  const [searchText , setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("");
 
-  const handleSearchChange = (e) =>{
-    setSearchText(e.target.value)
-  }
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
 
-  const handleSearch = () =>{
-    navigate(`/search/${searchText}`)
-  }
-   return (
+  const handleSearch = () => {
+    navigate(`search/${searchText}`);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+  return (
     <header className="Navigation">
       <div className="container">
         <div className="brand">
@@ -37,7 +43,13 @@ const Navigation = () => {
           </Link>
         </div>
         <div className="inputGroup">
-          <input type="text" className="searchInput" onChange={handleSearchChange} value={searchText}/>
+          <input
+            type="text"
+            className="searchInput"
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyPress}
+            value={searchText}
+          />
           <SearchIcon
             style={{
               color: "black",
@@ -46,8 +58,7 @@ const Navigation = () => {
               fontWeight: "bold",
               width: "fit-content",
             }}
-
-            onClick={()=>handleSearch()}
+            onClick={() => handleSearch()}
           />
         </div>
         <nav className="primary-item">
@@ -64,57 +75,53 @@ const Navigation = () => {
             onClick={() => navigate("category")}
           />
 
-          {isLoading? 
-          
-                    <span className="button-wr" style={{ backgroundColor: "white" , border:"none"}}>
-                      <Settingsrolling />
-                      <button className="btn">
-                        {" "}
-                        Loading..{" "}
-                      </button>
-                    </span>
-          :
-            currentUser ? (
-              <span className="button-wr" style={{ backgroundColor: "white" }}>
-                <DesignServicesIcon
-                  style={{
-                    color: "black",
-                    backgroundColor: "white",
-                    cursor: "pointer",
-                    border: "2px solid black",
-                    borderRadius: "50%",
-                    fontSize: "25",
-                    fontWeight: "bold",
-                    width: "fit-content",
-                  }}
-                  onClick={() => navigate("post")}
-                />
-                <button className="btn" onClick={() => navigate("post")}>
-                  {" "}
-                  Write{" "}
-                </button>
-              </span>
-            ) : (
-              <span className="button-wr" style={{ backgroundColor: "white" }}>
-                <LoginIcon
-                  style={{
-                    color: "black",
-                    backgroundColor: "white",
-                    cursor: "pointer",
-                      fontSize: "25",
-                    fontWeight: "bold",
-                    width: "fit-content",
-                  }}
-                  onClick={() => navigate("Login")}
-                />
-                <button className="btn" onClick={() => navigate("Login")}>
-                  {" "}
-                  Login{" "}
-                </button>
-              </span>
-            )
-            
-          }
+          {isLoading ? (
+            <span
+              className="button-wr"
+              style={{ backgroundColor: "white", border: "none" }}
+            >
+              <Settingsrolling />
+              <button className="btn"> Loading.. </button>
+            </span>
+          ) : currentUser ? (
+            <span className="button-wr" style={{ backgroundColor: "white" }}>
+              <DesignServicesIcon
+                style={{
+                  color: "black",
+                  backgroundColor: "white",
+                  cursor: "pointer",
+                  border: "2px solid black",
+                  borderRadius: "50%",
+                  fontSize: "25",
+                  fontWeight: "bold",
+                  width: "fit-content",
+                }}
+                onClick={() => navigate("post")}
+              />
+              <button className="btn" onClick={() => navigate("post")}>
+                {" "}
+                Write{" "}
+              </button>
+            </span>
+          ) : (
+            <span className="button-wr" style={{ backgroundColor: "white" }}>
+              <LoginIcon
+                style={{
+                  color: "black",
+                  backgroundColor: "white",
+                  cursor: "pointer",
+                  fontSize: "25",
+                  fontWeight: "bold",
+                  width: "fit-content",
+                }}
+                onClick={() => navigate("Login")}
+              />
+              <button className="btn" onClick={() => navigate("Login")}>
+                {" "}
+                Login{" "}
+              </button>
+            </span>
+          )}
 
           <AccountCircleIcon
             onClick={() => navigate("/myaccount")}
@@ -127,29 +134,21 @@ const Navigation = () => {
               width: "fit-content",
               marginRight: "10",
             }}
-            
+          />
+          {currentUser && (
+            <LogoutIcon
+              style={{
+                color: "black",
+                backgroundColor: "white",
+                cursor: "pointer",
+                fontSize: "25",
+                fontWeight: "bold",
+                width: "fit-content",
+                border: "none",
+              }}
+              onClick={() => Logout(setCurrentUser)}
             />
-            {currentUser && 
-                   <LogoutIcon
-                    style={{
-                      color: "black",
-                      backgroundColor: "white",
-                      cursor: "pointer",
-                      fontSize: "25",
-                      fontWeight: "bold",
-                      width: "fit-content",
-                      border: "none",
-
-                    
-                    }}
-                    onClick={()=>Logout(setCurrentUser)}
-
-
-                  />
-            
-   
-  
-            }
+          )}
         </nav>
         <div className="mob-cont">
           <MenuIcon

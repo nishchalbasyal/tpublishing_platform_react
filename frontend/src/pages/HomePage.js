@@ -9,8 +9,7 @@ import { AuthContext } from "../components/Auth/AuthContext";
 import { useContext, useState } from "react";
 import { PostContext } from "../components/Auth/PostContext";
 import PostBox from "../components/PostBox";
-import ReactPaginate from "react-paginate";
-
+ 
 const HomePage = () => {
   const navigate = useNavigate();
   const dataImg =
@@ -53,8 +52,7 @@ const HomePage = () => {
 
   const { currentUser, isLoading } = useContext(AuthContext);
 
-  const [pageNumber, setPageNumber] = useState(0);
-
+ 
  
 
   return (
@@ -78,9 +76,9 @@ const HomePage = () => {
       </section>
       <section className="content-container">
         <section className="post-archive">
-          {posts
-             .map((post) => (
-              <PostBox key={post.id} posts={posts} setPosts={setPosts} />
+          {[...posts].reverse()
+             .map((post,i) => (
+              <PostBox key={i} post={post} setPosts={setPosts} />
             ))}
 
  

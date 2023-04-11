@@ -1,7 +1,10 @@
 import { Link , useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
+import { AuthContext } from "./Auth/AuthContext";
+import { useContext } from "react";
 
 const MobileNavigation = ({ setMobilemenu }) => {
+  const { currentUser, isLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <div className="mob-container">
@@ -9,18 +12,33 @@ const MobileNavigation = ({ setMobilemenu }) => {
         style={{ cursor: "pointer" }}
         onClick={() => setMobilemenu(false)}
       />
+
       <div className="header-icon">
+        {currentUser?(
+          <>
         <img
           className="profile-img"
-          src="https://media.istockphoto.com/photos/smiling-indian-man-looking-at-camera-picture-id1270067126?b=1&k=20&m=1270067126&s=612x612&w=0&h=tcabRaVlA0bsZhWCDBXxC1IYuGnh7_VuramO-vJ5jRs="
-          alt="rand"
+          src={currentUser.photoURL}
+          alt={currentUser.displayName}
         />
-        <h3>Nishchal Basyal</h3>
+        <h3>{currentUser.displayName}</h3>
         <div className="btn-group">
           <button className="btn-fill" onClick={()=>(navigate('/post'), setMobilemenu(false))}>Create Post</button>
           <button className="btn-outline" onClick={()=>(navigate('/myaccount'), setMobilemenu(false))}>My Account</button>
         </div>
+        </>
+        ):(
+          <div className="btn-group">
+
+          <button className="btn-fill" onClick={()=>(navigate('/login'), setMobilemenu(false))}>Login</button>
+          </div>
+
+        )
+
+        }
       </div>
+
+
       <nav className="mobile-nav">
         <Link to="/" className="mnav-items">
           {" "}
