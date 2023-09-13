@@ -1,5 +1,5 @@
 import "./scss/App.scss";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/login";
 import Registration from "./pages/Registration";
@@ -65,7 +65,9 @@ function App() {
   }, [currentUser]);
 
   return (
-    <>
+    <div className="App">
+     <BrowserRouter basename="/">
+
       <AuthContext.Provider value={{ currentUser, isLoading, setCurrentUser,error }}>
         <PostContext.Provider value={{ posts,isPostLoading, setPostLoading,setPosts }}>
           <Routes>
@@ -98,7 +100,12 @@ function App() {
           </Routes>
         </PostContext.Provider>
       </AuthContext.Provider>
-    </>
+
+      </BrowserRouter>
+
+
+      </div>
+
   );
 }
 
