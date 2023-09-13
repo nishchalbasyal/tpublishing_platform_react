@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "./Auth/AuthContext";
+// import { AuthContext } from "./Auth/AuthContext";
 import { PostContext } from "./Auth/PostContext";
 import { formatDate } from "./Auth/formatDate";
 import Settingsrolling from "./Settingsrolling";
+import Comment from "./Comment";
 const Post = () => {
   const { title } = useParams();
-  const { posts, setPosts, setPostLoading } = useContext(PostContext);
+  const { posts, setPostLoading } = useContext(PostContext);
 
   const url = decodeURIComponent(title);
   console.log(url);
@@ -17,7 +18,12 @@ const Post = () => {
 
  
   return (
+    <>
     <div className="post">
+
+  <div className="post-section">
+
+     
       {setPostLoading?
       (      
       
@@ -54,8 +60,13 @@ const Post = () => {
       ):<Settingsrolling />
 
       }
+        </div>
 
-    </div>
+ </div>
+ 
+    <Comment />
+
+    </>
   );
 };
 

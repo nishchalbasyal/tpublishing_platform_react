@@ -24,7 +24,7 @@ const MyAccountEdit = ({posts, currentUser}) => {
   };
   return (
     <div className="myaccountedit">
-      {data.map((post, i) => {
+      {[...data].reverse().map((post, i) => {
         return (
              <div key={i} className="desc-container">
               <div className="sn-count">{i+1}</div>

@@ -40,19 +40,19 @@ const MobileNavigation = ({ setMobilemenu }) => {
 
 
       <nav className="mobile-nav">
-        <Link to="/" className="mnav-items">
+        <Link to="/category" className="mnav-items" onClick={() => setMobilemenu(false)}>
           {" "}
-          About{" "}
+          Category{" "}
         </Link>
-        <Link to="/" className="mnav-items">
+        <Link to="/myaccount" className="mnav-items" onClick={() => setMobilemenu(false)}>
           {" "}
-          Blogs{" "}
+          MyAccount{" "}
         </Link>
-        <Link to="/" className="mnav-items">
+        <Link to="/" className="mnav-items" onClick={() => setMobilemenu(false)}>
           {" "}
-          Contact{" "}
+          Home{" "}
         </Link>
-        <Link to="/" className="mnav-items">
+        <Link to="/logout" className="mnav-items" onClick={() => setMobilemenu(false)}>
           {" "}
           Logout{" "}
         </Link>

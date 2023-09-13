@@ -26,18 +26,29 @@ function App() {
 
   const getPost = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/articles");
+      let response = '';
+      
+      if (currentUser) {
+        const idToken = await currentUser.getIdToken(true);
+        const headers = {
+          Authorization: `Bearer ${idToken}`
+        };
+  
+        response = await axios.get("http://localhost:8000/api/articles", { headers });
+      } else {
+        response = await axios.get("http://localhost:8000/api/articles");
+      }
+  
       setPosts(response.data);
-      setPostLoading(isPostLoading)
-      console.log("Data fetched successfully");
+      setPostLoading(isPostLoading);
     } catch (e) {
       setError(e.message);
     }
   };
-
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
-      setCurrentUser(user);
+      setCurrentUser(user);   
       setLoading(false);
     });
 
@@ -50,7 +61,7 @@ function App() {
     }
 
     return unsubscribe;
-  }, []);
+  }, [currentUser]);
 
   return (
     <>

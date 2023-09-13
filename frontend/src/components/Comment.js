@@ -1,6 +1,6 @@
  const Comment = () => {
   return (
-    <div>
+    <div className="comments">
       
     </div>
   )

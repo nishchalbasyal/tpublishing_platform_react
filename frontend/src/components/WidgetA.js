@@ -1,5 +1,5 @@
 const WidgetA = ({ currentUser,navigate }) => {
-  console.log(currentUser)
+ 
   return (
     <div className="WidgetA">
       <div className="header"></div>

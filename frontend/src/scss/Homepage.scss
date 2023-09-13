@@ -40,13 +40,14 @@
     .content-container{
         display: flex;
         flex-flow: row wrap;
+        justify-content: space-around;
+        flex-direction: row;
         width: 100%;
 
 
 
         .post-archive{
-            width: 55%;
-            margin: 10px;
+             width: 50%;
 
             @include responsive(){
                 width: 100%;
@@ -54,7 +55,7 @@
         }
 
        .sidebar{
-         width : 40%;
+         flex: 1;
          margin: 10px 30px 10px 30px;
 
          @include responsive(){
