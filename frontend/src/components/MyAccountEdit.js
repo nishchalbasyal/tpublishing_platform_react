@@ -13,7 +13,7 @@ const MyAccountEdit = ({posts, currentUser}) => {
   const handleDelete = async (postID) => {
     alert("You Are Deleting The Post");
     await axios
-      .delete(` https://tpp-7ygf.onrender.com/api/articles/${postID}`)
+      .delete(` ${process.env.Base_URL}/articles/${postID}`)
       .then(() => {
         setData(data.filter((post) => post._id !== postID));
         alert("Deleted Successfully");

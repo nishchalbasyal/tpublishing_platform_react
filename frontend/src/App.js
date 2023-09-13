@@ -72,7 +72,7 @@ function App() {
         <PostContext.Provider value={{ posts,isPostLoading, setPostLoading,setPosts }}>
           <Routes>
             <Route path="/" element={<MainPage />}>
-              <Route index element={<HomePage />} />
+              <Route path="/" index element={<HomePage />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Registration />} />
               <Route path="search/:searchText" element={<SearchPage />} />
