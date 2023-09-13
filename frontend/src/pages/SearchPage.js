@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom"
-import PostBox from "../components/PostBox"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import SearchItem from "../components/SearchItem";
@@ -14,7 +13,7 @@ const SearchPage = () => {
 
  const fetchData = async  (Text) =>{
   try {
-    const response = await axios.get(`http://localhost:8000/api/search/?q=${Text}`);
+    const response = await axios.get(` https://tpp-7ygf.onrender.com/api/search/?q=${Text}`);
     setSearchData(response.data);
      
   } catch (error) {

@@ -17,23 +17,23 @@ import { Logout } from "./Auth/Logout";
 const Navigation = () => {
   const navigate = useNavigate();
   const { currentUser, isLoading, setCurrentUser } = useContext(AuthContext);
-  // console.log(currentUser)
   const [openMobMenu, setMobilemenu] = useState(false);
   const [searchText, setSearchText] = useState("");
 
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
-  };
+  }
 
   const handleSearch = () => {
     navigate(`search/${searchText}`);
-  };
+  }
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSearch();
     }
-  };
+  }
+
   return (
     <header className="Navigation">
       <div className="container">

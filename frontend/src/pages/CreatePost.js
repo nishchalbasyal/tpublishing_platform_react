@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import ReactQuill from "react-quill";
 import ImageResize from "quill-image-resize-module";
@@ -39,7 +39,6 @@ const CreatePost = () => {
   const [category, setCategory] = useState("");
   const [sval, setSval] = useState("");
   const [slug, setSlug] = useState("");
-  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const { posts } = useContext(PostContext);
   const { postID } = useParams();
@@ -114,10 +113,10 @@ const CreatePost = () => {
         };
 
         if (postID) {
-          await axios.put(`http://localhost:8000/api/articles/${postID}`, data);
+          await axios.put(`https://tpp-7ygf.onrender.com/api/articles${postID}`, data);
           displayError("Post Updated Successfully");
         } else {
-          await axios.post("http://localhost:8000/api/articles", data);
+          await axios.post("https://tpp-7ygf.onrender.com/api/articles", data);
           displayError("Post Created Successfully");
           setTitle("");
           setSummary("");

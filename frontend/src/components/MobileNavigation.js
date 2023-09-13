@@ -4,7 +4,7 @@ import { AuthContext } from "./Auth/AuthContext";
 import { useContext } from "react";
 
 const MobileNavigation = ({ setMobilemenu }) => {
-  const { currentUser, isLoading } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <div className="mob-container">
@@ -23,14 +23,14 @@ const MobileNavigation = ({ setMobilemenu }) => {
         />
         <h3>{currentUser.displayName}</h3>
         <div className="btn-group">
-          <button className="btn-fill" onClick={()=>(navigate('/post'), setMobilemenu(false))}>Create Post</button>
-          <button className="btn-outline" onClick={()=>(navigate('/myaccount'), setMobilemenu(false))}>My Account</button>
+          <button className="btn-fill" onClick={()=>{navigate('/post'); setMobilemenu(false)}}>Create Post</button>
+          <button className="btn-outline" onClick={()=>{navigate('/myaccount'); setMobilemenu(false)}}>My Account</button>
         </div>
         </>
         ):(
           <div className="btn-group">
 
-          <button className="btn-fill" onClick={()=>(navigate('/login'), setMobilemenu(false))}>Login</button>
+          <button className="btn-fill" onClick={()=>{navigate('/login'); setMobilemenu(false)}}>Login</button>
           </div>
 
         )

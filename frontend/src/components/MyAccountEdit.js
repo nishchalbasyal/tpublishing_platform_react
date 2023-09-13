@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { useState } from "react";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import axios from "axios";
@@ -13,7 +13,7 @@ const MyAccountEdit = ({posts, currentUser}) => {
   const handleDelete = async (postID) => {
     alert("You Are Deleting The Post");
     await axios
-      .delete(`http://localhost:8000/api/articles/${postID}`)
+      .delete(` https://tpp-7ygf.onrender.com/api/articles/${postID}`)
       .then(() => {
         setData(data.filter((post) => post._id !== postID));
         alert("Deleted Successfully");

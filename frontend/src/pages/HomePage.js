@@ -4,9 +4,9 @@ import Slider from "react-slick";
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/Auth/AuthContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { PostContext } from "../components/Auth/PostContext";
 import PostBox from "../components/PostBox";
  

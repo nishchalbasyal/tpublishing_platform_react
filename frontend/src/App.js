@@ -9,10 +9,9 @@ import MainPage from "./pages/MainPage";
 import Category from "./pages/Category";
 import MyAccount from "./pages/MyAccount";
 import { AuthContext } from "./components/Auth/AuthContext";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Settingsrolling from "./components/Settingsrolling";
-import WidgetA from "./components/WidgetA";
+ 
 import SinglePost from "./components/SinglePost";
 import axios from "axios";
 import { PostContext } from "./components/Auth/PostContext";
@@ -24,33 +23,35 @@ function App() {
   const [isPostLoading, setPostLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
-  const getPost = async () => {
-    try {
-      let response = '';
-      
-      if (currentUser) {
-        const idToken = await currentUser.getIdToken(true);
-        const headers = {
-          Authorization: `Bearer ${idToken}`
-        };
-  
-        response = await axios.get("http://localhost:8000/api/articles", { headers });
-      } else {
-        response = await axios.get("http://localhost:8000/api/articles");
-      }
-  
-      setPosts(response.data);
-      setPostLoading(isPostLoading);
-    } catch (e) {
-      setError(e.message);
-    }
-  };
+ 
   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
       setCurrentUser(user);   
       setLoading(false);
     });
+
+    const getPost = async () => {
+      try {
+        let response = '';
+        
+        if (currentUser) {
+          const idToken = await currentUser.getIdToken(true);
+          const headers = {
+            Authorization: `Bearer ${idToken}`
+          };
+    
+          response = await axios.get("https://tpp-7ygf.onrender.com/api/articles", { headers });
+        } else {
+          response = await axios.get("https://tpp-7ygf.onrender.com/api/articles");
+        }
+    
+        setPosts(response.data);
+        setPostLoading(false); 
+      } catch (e) {
+        setError(e.message);
+      }
+    };
 
     try {
       getPost();
@@ -65,8 +66,8 @@ function App() {
 
   return (
     <>
-      <AuthContext.Provider value={{ currentUser, isLoading, setCurrentUser }}>
-        <PostContext.Provider value={{ posts, setPostLoading,setPosts }}>
+      <AuthContext.Provider value={{ currentUser, isLoading, setCurrentUser,error }}>
+        <PostContext.Provider value={{ posts,isPostLoading, setPostLoading,setPosts }}>
           <Routes>
             <Route path="/" element={<MainPage />}>
               <Route index element={<HomePage />} />
