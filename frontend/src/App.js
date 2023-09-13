@@ -66,7 +66,7 @@ function App() {
 
   return (
     <div className="App">
-     <BrowserRouter basename="/">
+     <BrowserRouter>
 
       <AuthContext.Provider value={{ currentUser, isLoading, setCurrentUser,error }}>
         <PostContext.Provider value={{ posts,isPostLoading, setPostLoading,setPosts }}>
