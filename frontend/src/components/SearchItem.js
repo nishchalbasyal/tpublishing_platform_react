@@ -3,8 +3,7 @@ import { formatDate } from "./Auth/formatDate";
 
 const SearchItem = ({post}) => {
     const navigate = useNavigate();
-console.log(post)
-    const clickPost = (titleID, id) => {
+     const clickPost = (titleID, id) => {
       
         navigate(`/${titleID}`);
       };

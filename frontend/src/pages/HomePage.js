@@ -4,15 +4,16 @@ import Slider from "react-slick";
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/Auth/AuthContext";
 import { useContext } from "react";
 import { PostContext } from "../components/Auth/PostContext";
 import PostBox from "../components/PostBox";
- 
+import Settingsrolling from "../components/Settingsrolling";
+
 const HomePage = () => {
   const navigate = useNavigate();
-  
+
   const settings = {
     dots: true,
     infinite: true,
@@ -47,12 +48,9 @@ const HomePage = () => {
     ],
   };
 
-  const { posts, setPosts } = useContext(PostContext);
+  const { posts, setPosts, isPostLoading } = useContext(PostContext);
 
   const { currentUser, isLoading } = useContext(AuthContext);
-
- 
- 
 
   return (
     <div className="container">
@@ -67,47 +65,53 @@ const HomePage = () => {
                   title={post.title}
                   author={post.author}
                   summary={post.summary}
+                  onClick={()=>navigate(`/${post.slug}`)}
                 />
               );
             })}
           </Slider>
         )}
       </section>
-      <section className="content-container">
-        <section className="post-archive">
-          {[...posts].reverse()
-             .map((post,i) => (
-              <PostBox key={i} post={post} setPosts={setPosts} />
-            ))}
 
- 
-        </section>
-        <aside className="sidebar">
-          <div id="sidebar-a">
-            <WidgetA
-              isLoading={isLoading}
-              currentUser={currentUser}
-              navigate={navigate}
+      {isPostLoading && isLoading  ? (
+        <Settingsrolling />
+      ) : (
+        <>
+          <section className="content-container">
+            <section className="post-archive">
+              {[...posts].reverse().map((post, i) => (
+                <PostBox key={i} post={post} setPosts={setPosts} />
+              ))}
+            </section>
+            <aside className="sidebar">
+              <div id="sidebar-a">
+                {
+                  isLoading && isPostLoading ?(
+                    <Settingsrolling />
+                  ) :  (<WidgetA isPostLoading={isPostLoading} isLoading={isLoading} navigate={navigate} currentUser={currentUser}/>)
+
+                }
+              </div>
+            </aside>
+          </section>
+          <button className="float-btn">
+            {" "}
+            <DesignServicesIcon
+              style={{
+                color: "white",
+                backgroundColor: "transparent",
+                cursor: "pointer",
+                borderRadius: "100%",
+                fontSize: "25",
+                fontWeight: "bold",
+                width: "30px",
+                height: "30px",
+              }}
+              onClick={() => navigate("post")}
             />
-          </div>
-        </aside>
-      </section>
-      <button className="float-btn">
-        {" "}
-        <DesignServicesIcon
-          style={{
-            color: "white",
-            backgroundColor: "transparent",
-            cursor: "pointer",
-            borderRadius: "100%",
-            fontSize: "25",
-            fontWeight: "bold",
-            width: "30px",
-            height: "30px",
-          }}
-          onClick={() => navigate("post")}
-        />
-      </button>
+          </button>
+        </>
+      )}
     </div>
   );
 };

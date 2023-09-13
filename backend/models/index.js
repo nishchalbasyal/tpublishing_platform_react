@@ -6,6 +6,10 @@ const postSchema = new mongoose.Schema({
     featureImg: String,
     category: String,
     author: String,
+    slug: {
+      type:String,
+      unique:true,
+    },
     authorEmail: String,
     comments: [{ 
         type: [],

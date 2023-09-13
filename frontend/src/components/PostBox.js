@@ -24,7 +24,7 @@ const PostBox = ({post, setPosts}) => {
       console.log(currentUser.displayName);
       await axios
         .put(
-          `http://localhost:8000/api/articles/${currentUser.email}/vote/up`,
+          `https://tpp-7ygf.onrender.com/api/articles/${currentUser.email}/vote/up`,
           {
             articleId: articleId,
           }
@@ -54,7 +54,7 @@ const PostBox = ({post, setPosts}) => {
     if (currentUser) {
       await axios
         .put(
-          `http://localhost:8000/api/articles/${currentUser.email}/vote/down`,
+          `https://tpp-7ygf.onrender.com/api/articles/${currentUser.email}/vote/down`,
           {
             articleId: articleId,
           }
@@ -94,12 +94,12 @@ const PostBox = ({post, setPosts}) => {
                 <p className="time-span">{formatDate(post.created)}</p>
               </div>
               <div className="title">
-                <h1 onClick={() => clickPost(post.title,post._id)}>{post.title}</h1>
+                <h1 onClick={() => clickPost(post.slug,post._id)}>{post.title}</h1>
               </div>
               <div className="dec-container">
                 <div className="featuredImg">
                   <img
-                    onClick={() => clickPost(post.title,post._id)}
+                    onClick={() => clickPost(post.slug,post._id)}
                     src={post.featureImg}
                     alt="blog"
                   />

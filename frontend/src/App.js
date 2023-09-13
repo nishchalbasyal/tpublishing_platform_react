@@ -42,9 +42,9 @@ function App() {
           };
     
           response = await axios.get("https://tpp-7ygf.onrender.com/api/articles", { headers });
-        } else {
+         } else {
           response = await axios.get("https://tpp-7ygf.onrender.com/api/articles");
-        }
+         }
     
         setPosts(response.data);
         setPostLoading(false); 
@@ -90,7 +90,7 @@ function App() {
               <Route
                 path="edit/:postID"
                 element={
-                  currentUser ? <CreatePost /> : <Navigate to="/login" />
+                  isLoading && currentUser ? <CreatePost /> : <Navigate to="/login" />
                 }
               />
 
