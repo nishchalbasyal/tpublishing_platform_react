@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { formatDate } from "./Auth/formatDate";
 
 const SearchItem = ({post}) => {

@@ -12,9 +12,9 @@ const PostBox = ({post, setPosts}) => {
   const { currentUser, isLoading } = useContext(AuthContext);
 
   const clickPost = (titleID, id) => {
-    const cleanText = titleID.toLowerCase();
-    const decodedText = cleanText.replace(/ /g, "-");
-    const url = decodedText.substring(0); // take first 24 characters
+    // const cleanText = titleID.toLowerCase();
+    // const decodedText = cleanText.replace(/ /g, "-");
+    // const url = decodedText.substring(0); // take first 24 characters
  
     navigate(`/${titleID}`);
   };

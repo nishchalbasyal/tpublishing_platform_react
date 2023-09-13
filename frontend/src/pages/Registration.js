@@ -43,8 +43,7 @@ const Registration = () => {
       }
     } catch (error) {
       setError(error.message);
-      console.log(error);
-    }
+     }
   };
   return (
     <div className="login-container">
