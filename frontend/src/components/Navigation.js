@@ -46,6 +46,7 @@ const Navigation = () => {
           <input
             type="text"
             className="searchInput"
+            placeholder="Search..."
             onChange={handleSearchChange}
             onKeyDown={handleKeyPress}
             value={searchText}

@@ -15,7 +15,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SinglePost from "./components/SinglePost";
 import axios from "axios";
 import { PostContext } from "./components/Auth/PostContext";
-
+import CategoryPage from "./pages/CategoryPage";
+ 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState(null);
@@ -74,7 +75,7 @@ function App() {
             <Route path="/" element={<MainPage />}>
               <Route index element={<HomePage />} />
               <Route path="login" element={<Login />} />
-              <Route path="register" element={<Registration />} />
+               <Route path="register" element={<Registration />} />
               <Route path="search/:searchText" element={<SearchPage />} />
 
               <Route
@@ -89,13 +90,13 @@ function App() {
               />
               <Route
                 path="edit/:postID"
-                element={
-                  isLoading && currentUser ? <CreatePost /> : <Navigate to="/login" />
+                element={ currentUser ? <CreatePost /> : <Navigate to="/login" />
                 }
               />
 
               <Route path=":title" element={<SinglePost />} />
               <Route path="category" element={<Category />} />
+              <Route path="category/:category" element={<CategoryPage />} />
               </Route>
           </Routes>
         </PostContext.Provider>

@@ -6,8 +6,7 @@ import express from "express";
 const app = express();
 
 export const getAllPost = async (req, res) => {
-  console.log("This is Trigger")
-  try {
+   try {
     const data = await postModel.find({});
     res.status(200).json(data);
   } catch (e) {
@@ -181,8 +180,7 @@ export const  updatePost = async (req,res)=>{
   try {
     const updatedData = await postModel.findOneAndUpdate({ _id: id }, { $set: update }, options);
     res.json(updatedData);
-    console.log(`Post Updated SuccessFully`)
-  } catch (error) {
+   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 
@@ -192,7 +190,6 @@ export const  updatePost = async (req,res)=>{
 
 
 export const deletePost = async (req, res) => {
-    console.log("URL Hit")
     const id = req.params.id;
     try {
       const deletedPost = await postModel.findByIdAndDelete(id);
