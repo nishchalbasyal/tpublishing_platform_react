@@ -73,7 +73,7 @@ const HomePage = () => {
         )}
       </section>
 
-      {isPostLoading && isLoading  ? (
+      {isPostLoading ? (
         <Settingsrolling />
       ) : (
         <>

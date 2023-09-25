@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import ReactQuill from "react-quill";
 import ImageResize from "quill-image-resize-module";
@@ -40,8 +40,9 @@ const CreatePost = () => {
   const [sval, setSval] = useState("");
   const [slug, setSlug] = useState("");
   const { currentUser } = useContext(AuthContext);
-  const { posts } = useContext(PostContext);
+  const { posts,setPosts } = useContext(PostContext);
   const { postID } = useParams();
+  const navigate = useNavigate();
 
 
 
@@ -117,15 +118,21 @@ const CreatePost = () => {
         };
 
         if (postID) {
-          await axios.put(`https://tpp-7ygf.onrender.com/api/articles/${postID}`, data);
+          await axios.put(`https://tpp-7ygf.onrender.com/api/articles/${postID}`, data)
+          const response = await axios.get("https://tpp-7ygf.onrender.com/api/articles")
+          setPosts(response.data)
           displayError("Post Updated Successfully");
+          navigate("/")
         } else {
           await axios.post("https://tpp-7ygf.onrender.com/api/articles", data);
-          displayError("Post Created Successfully");
+          const response = await axios.get("https://tpp-7ygf.onrender.com/api/articles")
+          setPosts(response.data)
+           displayError("Post Created Successfully");
           setTitle("");
           setSummary("");
           setText("");
           setFeatureImage("");
+          navigate("/")
         }
       }
     } catch (error) {
