@@ -9,17 +9,17 @@ const Post = () => {
   const { title } = useParams();
   const { posts, setPostLoading } = useContext(PostContext);
 
-  const url = decodeURIComponent(title);
-  console.log(url);
+  // const url = decodeURIComponent(title);
+  // console.log(url);
 
   const Mainpost = posts.filter((post) => 
-    post.title === url
+    post.slug === title
   );
 
  
   return (
     <>
-    <div className="post">
+    <div className="post" key={Mainpost.slug}>
 
   <div className="post-section">
 

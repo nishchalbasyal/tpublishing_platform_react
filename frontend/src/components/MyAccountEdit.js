@@ -4,16 +4,16 @@ import { BiUpvote, BiDownvote } from "react-icons/bi";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const MyAccountEdit = ({posts, currentUser}) => {
+  
   const [data, setData] = useState(
     posts.filter((post) => post.authorEmail === currentUser.email)
   );
-  console.log(data);
   const navigate = useNavigate();
 
   const handleDelete = async (postID) => {
     alert("You Are Deleting The Post");
     await axios
-      .delete(` https://tpp-7ygf.onrender.com/api/articles/${postID}`)
+      .delete(`https://tpp-7ygf.onrender.com/api/articles/${postID}`)
       .then(() => {
         setData(data.filter((post) => post._id !== postID));
         alert("Deleted Successfully");

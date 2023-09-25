@@ -43,6 +43,8 @@ const CreatePost = () => {
   const { posts } = useContext(PostContext);
   const { postID } = useParams();
 
+
+
   useEffect(() => {
     if (postID) {
       const singleData = posts.find((post) => post._id === postID);
@@ -54,7 +56,8 @@ const CreatePost = () => {
         setFeatureImage(featureImg);
         setCategory(category);
         setSlug(slug);
-      }
+        setSval(slug);
+       }
     }
   }, [postID, posts]);
 
@@ -108,12 +111,13 @@ const CreatePost = () => {
           author: currentUser.displayName,
           authorEmail: currentUser.email,
           category,
+          slug
           
 
         };
 
         if (postID) {
-          await axios.put(`https://tpp-7ygf.onrender.com/api/articles${postID}`, data);
+          await axios.put(`https://tpp-7ygf.onrender.com/api/articles/${postID}`, data);
           displayError("Post Updated Successfully");
         } else {
           await axios.post("https://tpp-7ygf.onrender.com/api/articles", data);
@@ -174,6 +178,7 @@ const CreatePost = () => {
   ];
 
   return (
+    
     <div className="form-container">
       <div className="form-main">
         {  error &&  <div  style={{display:"flex",justifyContent:"center"}}>
@@ -189,7 +194,12 @@ const CreatePost = () => {
 
 
         <div className="form-header">
-          <h1>Create Post</h1>
+          <h1>{
+          
+          postID? "Edit Post" : "Create Post"
+          
+          }
+          </h1>
           <Link to="draft">Draft</Link>
         </div>
 

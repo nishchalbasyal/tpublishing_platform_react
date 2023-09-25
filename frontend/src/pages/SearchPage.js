@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import SearchItem from "../components/SearchItem";
+import Settingsrolling from "../components/Settingsrolling";
 
 
 
@@ -9,13 +10,16 @@ import SearchItem from "../components/SearchItem";
 const SearchPage = () => {
  const  { searchText} = useParams();
  const [data , setSearchData] =  useState([]);
- console.log(searchText)
+ const [isLoading, setLoading] = useState(true);
 
  const fetchData = async  (Text) =>{
   try {
-    const response = await axios.get(` https://tpp-7ygf.onrender.com/api/search/?q=${Text}`);
-    setSearchData(response.data);
-     
+    await axios.get(`https://tpp-7ygf.onrender.com/api/search/?q=${Text}`)
+    .then((e)=>{
+      setSearchData(e.data);
+      setLoading(false)
+    })
+      
   } catch (error) {
     console.log(error.message)
   }
@@ -29,8 +33,7 @@ const SearchPage = () => {
      
   },[searchText])
 
-  console.log(data)
-  
+   
 
 
   
@@ -39,7 +42,12 @@ const SearchPage = () => {
          <h1>Search Results:</h1>
        <div className="searchItem">
 
-    {data.length > 0 ? (
+
+
+    {
+    
+    isLoading?(<Settingsrolling/>):
+    data.length > 0 ? (
       
       data.map((post,i) => <SearchItem key={i} post={post}/>)
     ) : (

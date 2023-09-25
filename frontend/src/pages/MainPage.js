@@ -3,7 +3,8 @@ import Navigation from "../components/Navigation"
 const MainPage = () => {
   return (
     <>
-    <Navigation />
+    
+    <Navigation />    
     <Outlet />
       
     </>
